@@ -19,21 +19,21 @@ import sys
 
 import lib.index as i
 
-i.account_number    = None
-i.region_name       = 'eu-west-1'
-i.tag_name          = None
-i.tag_value         = None
-i.instance_type     = None
-i.instance_arn      = None
-i.vpc_arn           = None
-i.subnet_arn        = None
-i.sns_email         = None
-i.sns_number        = None
-i.cpu_threshold     = 10
-i.moreless          = 'less'
-i.sqs_arn           = None
-i.sqs_lenght        = 5
-i.sqs_cleanup       = True
+i.account_number    = None          #OPTIONAL, if not specified, account derived from EC2/Lambda
+i.region_name       = 'eu-west-1'   #REQUIRED
+i.tag_name          = None          #OPTIONAL
+i.tag_value         = None          #OPTIONAL
+i.instance_type     = None          #OPTIONAL
+i.instance_arn      = None          #OPTIONAL
+i.vpc_arn           = None          #OPTIONAL
+i.subnet_arn        = None          #OPTIONAL
+i.sns_email         = None          #OPTIONAL
+i.sns_number        = None          #OPTIONAL
+i.cpu_threshold     = 10            #OPTIONAL, if not specified, set to 10%
+i.moreless          = 'less'        #OPTIONAL, if not specified, set to 'less'
+i.sqs_arn           = None          #REQUIRED     
+i.sqs_lenght        = 5             #OPTIONAL, if not specified, set to 5
+i.sqs_cleanup       = True          #OPTIONAL, if not specified, set to True
 
 def handler(event, context):
     i.account_number    = os.environ['sqs_cleanup']
