@@ -19,23 +19,41 @@ import sys
 
 import lib.index as i
 
-i.account_number = '09876543234'
-i.region_name = 'eu-west-1'
-i.tag_name = 'Name'
-i.tag_value = 'ParallelCluster'
-i.instance_type = None
-i.instance_arn = None
-i.vpc_arn = None
-i.subnet_arn = None
-i.sns_email = [ 'example@example.com' ]
-i.sns_number = [ '+44 89743523647' ]
-i.cpu_threshold = 25
-i.moreless = 'less'
-i.sqs_lenght = 5
-i.sqs_cleanup = True
+i.account_number    = None
+i.region_name       = 'eu-west-1'
+i.tag_name          = None
+i.tag_value         = None
+i.instance_type     = None
+i.instance_arn      = None
+i.vpc_arn           = None
+i.subnet_arn        = None
+i.sns_email         = None
+i.sns_number        = None
+i.cpu_threshold     = 10
+i.moreless          = 'less'
+i.sqs_arn           = None
+i.sqs_lenght        = 5
+i.sqs_cleanup       = True
 
 def handler(event, context):
-    return True
+    i.account_number    = os.environ['sqs_cleanup']
+    i.region_name       = os.environ['region_name']
+    i.tag_name          = os.environ['tag_name']
+    i.tag_value         = os.environ['tag_value']
+    i.instance_type     = os.environ['instance_type']
+    i.instance_arn      = os.environ['instance_arn']
+    i.vpc_arn           = os.environ['vpc_arn']
+    i.subnet_arn        = os.environ['subnet_arn']
+    i.sns_email         = os.environ['sns_email']
+    i.sns_number        = os.environ['sns_number']
+    i.cpu_threshold     = os.environ['cpu_threshold']
+    i.moreless          = os.environ['moreless']
+    i.sqs_arn           = os.environ['moreless']
+    i.sqs_lenght        = os.environ['sqs_lenght']
+    i.sqs_cleanup       = os.environ['sqs_cleanup']
+    
+    print 'i.run()'
+    i.run()
 
 
 if __name__ == '__main__':
